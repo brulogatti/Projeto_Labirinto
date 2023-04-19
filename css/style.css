@@ -1,0 +1,199 @@
+body{
+    font-family: Calibri;
+    transition: 0.2s ease;
+    text-align: center;
+}
+/*Quando a bolinha chegar no objetivo, o plano de fundo ficará verde*/
+body.success{
+    background-color: #b7f0b7;
+    transition: 0.2s ease;
+}
+body.fail{
+    background-color: #f0beb7;
+    transition: 0.2s ease;
+}
+/*Centralizando o bloco do jogo*/
+.game-container{
+    margin: 0px auto;
+}
+/*Centralizando o mapa e os controles do jogo*/
+#map-and-controls{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+/*Adicionando espaçamento na linha de instruções*/
+p {
+    margin: 10px 0px;
+    padding: 0px;
+}
+/*Posição relativa para permitir posicionar as camadas de acordo com o sistema de coordenadas*/
+.game-map{
+    position: relative;
+    margin: 0px auto;
+}
+/*Deseja-se controlar as posições das camadas e caminhos utilizando JS e não html, portanto atribui-se posição absoluta*/
+div.layer, 
+div.layer div{
+    position: absolute;
+}
+/*Adicionando borda aos caminhos*/
+#tiles div{
+    border: 1px solid grey;
+}
+/*Adicionando padrão de cores para o chão e paredes do caminho*/
+.game-container-default .floor{
+    background-color: lightgrey;
+}
+.game-container-default .wall{
+    background-color: skyblue;
+}
+.game-container-grassland .floor{
+    background-color: #7bb76d;
+}
+.game-container-grassland .wall{
+    background-color: #806d51;
+}
+.game-container-grassland #player{
+    background-color: #b2ccec;
+}
+.game-container-dungeon .floor{
+    background-color: #a9a9a9;
+}
+.game-container-dungeon .wall{
+    background-color: #9c649c;
+}
+.game-container-dungeon #player{
+    background-color: #e714dd;
+}
+/*Diminuir o tamanho do objetivo e do jogador dentro do caminho*/
+.player, .goal{
+    transform-origin: center;
+    transform: scale(0.85);
+}
+/*Atribuindo cor ao objetivo e ao jogador*/
+.player{
+    background-color: #90ee90;
+    border: 1px solid green;
+    /*Deixar a transição entre quadrados suave*/
+    transition: left 0.2s ease, top 0.2s ease;
+}
+.goal{
+    background-color: #531a69;
+    border: 1px solid #260333;
+}
+/*Estilizando a mensagem de sucesso e deixando ela invisível*/
+#success-msg{
+    opacity: 0;
+    transition: opacity 0.2s ease;
+    position: absolute;
+    padding: 5px 5px;
+    background-color: rgba(0,0,0,0.5);
+    color: white;
+    width: calc(100% - 8px);
+}
+/*Estilizando a mensagem de falha e deixando ela invisível*/
+#fail-msg{
+    opacity: 0;
+    transition: opacity 0.2s ease;
+    position: absolute;
+    padding: 5px 5px;
+    background-color: rgba(0,0,0,0.5);
+    color: white;
+    width: calc(100% - 8px);
+}
+/*Quando chegar ao final do labirinto a mensagem surgirá*/
+body.success #success-msg{
+    opacity: 1;
+    transition: opacity 0.2 ease;
+}
+/*Quando chegar ao final do labirinto a mensagem surgirá*/
+body.fail #fail-msg{
+    opacity: 1;
+    transition: opacity 0.2 ease;
+}
+/*Ajustando os botões na tela para não ficarem grudados*/
+#controls{
+    margin-left: 10px;
+    text-align: center;
+}
+#controls button{
+    padding: 10px 10px;
+    width: 38px;
+    height: 38px;
+    margin-top: 10px;
+    background-color: #DDD;
+    border: 1px solid #000;
+    border-radius: 3px;
+    cursor: pointer;
+    position: relative;
+}
+#controls #horiz{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+button#right{
+    margin-left: 5px;
+}
+button#left{
+    margin-right: 5px;
+}
+#controls button::before{
+    content: '';
+    width: 0px;
+    position: absolute;
+}
+button#left::before{
+    border-top: 10px solid transparent;
+    border-right: 15px solid #000;
+    border-bottom: 10px solid transparent;
+    left: 10px;
+    top: 9px;
+}
+button#right::before{
+    border-top: 10px solid transparent;
+    border-left: 15px solid #000;
+    border-bottom: 10px solid transparent;
+    left: 12px;
+    top: 9px;
+}
+button#up::before{
+    border-right: 10px solid transparent;
+    border-left: 10px solid transparent;
+    border-bottom: 15px solid #000;
+    left: 9px;
+    top: 9px;
+}
+button#down::before{
+    border-right: 10px solid transparent;
+    border-left: 10px solid transparent;
+    border-top: 15px solid #000;
+    left: 9px;
+    top: 12px;
+}
+.player.collide{
+    animation: wobble 0.5s;
+    animation-iteration-count: infinite;
+    transition: background-color 0.2s;
+}
+@keyframes wobble {
+    0% {transform: scale(0.85) translate(1px, 1px);}
+    10% {transform: scale(0.85) translate(-1px, -2px);}
+    20% {transform: scale(0.85) translate(-3px, 0px);}
+    30% {transform: scale(0.85) translate(3px, 2px);}
+    40% {transform: scale(0.85) translate(1px, -1px);}
+    50% {transform: scale(0.85) translate(-1px, 2px);}
+    60% {transform: scale(0.85) translate(-3px, 1px);}
+    70% {transform: scale(0.85) translate(3px, 1px);}
+    80% {transform: scale(0.85) translate(-1px, -1px);}
+    90% {transform: scale(0.85) translate(1px, 2px);}
+    100% {transform: scale(0.85) translate(1px, -2px);}
+}
+.img-container{
+    display: flex;
+    text-align: center;
+}
+img{
+    width: 320px;
+}

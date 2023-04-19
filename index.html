@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Jogo de labirinto usando Vanilla JS">
+    <meta name="author" content="Bruna Logatti">
+    <title>Jogo do Labirinto</title>
+    <!--
+        Trabalho baseado no labirinto disponível em :https://medium.com/codex/build-a-maze-game-with-vanilla-javascript-part-1-of-2-ddfd35e84e93
+    -->
+    <!--Css customizado-->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <form name="form_main">
+        <div id="chronometer">
+          <span id="hour">00</span>:<span id="minute">00</span>:<span id="second">00</span>:<span id="millisecond">000</span>
+        </div>
+      
+        <br />
+      </form>
+
+<!--Bloco do jogo-->
+<div id="game-container-1" class="game-container">
+    <div id="map-and-controls">
+        
+
+        <!--Início do mapa do jogo-->
+        <div id="game-map-1" class="game-map">
+
+            <div id="tiles" class="layer"></div>
+            <div id="sprites" class="layer"></div>
+
+            <div id="success-msg">Objetivo alcançado! Toque no labirinto para ir ao próximo nível</div>
+            <div id="fail-msg">Oh não! Você tocou nas paredes, tente novamente!</div>
+        </div>
+        <!--Fim do mapa do jogo-->
+    </div>
+
+    <div id="controls">
+        <button id="up"></button>
+
+        <div id="horiz">
+            <button id="left"></button>
+            <button id="right"></button>
+        </div>
+
+        <button id="down"></button>
+    </div>
+
+    <p id="text-1" class="text">
+        Use as setas ou os botões para mover a bolinha.
+    </p>
+
+    <p id="text-2" class="text">
+        Docinho, Lindinha e Florzinha estão perdidas no laboratório do Macaco Louco. Ajude-as a escapar, mas evite as paredes, elas são armadilhas!
+    </p>
+
+    <div id="img-container" name="img-container">
+        <img src="img/Blossom-Bubbles-and-Buttercup-and-Mojo-Jojo-in-The-Powerpuff-Girls-Movie.avif" alt="Meninas Super Poderosas com o Macaco  Louco ao fundo">
+    </div>
+</div>
+
+<!--JS customizado-->
+<script src="js/script.js"></script>
+
+</body>
+</html>
